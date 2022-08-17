@@ -12,7 +12,7 @@ class MyDocument extends Document {
 			<Html>
 				<Head>
 					<link rel="preload" href="/fonts/Open-Sans.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-					<link rel="preload" href="/fonts/Railway.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+					<link rel="preload" href="/fonts/Raleway.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
 				</Head>
 				<body className="bg-bg">
 					<Main />
