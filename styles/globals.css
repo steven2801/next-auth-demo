@@ -68,6 +68,8 @@
 	}
 
 	body,
+	p,
+	a,
 	.p {
 		@apply text-sm sm:text-base text-primary;
 	}
