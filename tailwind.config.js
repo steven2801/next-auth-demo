@@ -10,7 +10,6 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: ["Raleway", ...fontFamily.sans],
-				secondary: ["Open Sans", ...fontFamily.sans],
 			},
 			colors: {
 				primary: "rgb(var(--color-primary) / <alpha-value>)",
