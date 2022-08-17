@@ -5,6 +5,9 @@ module.exports = {
 	content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
+			boxShadow: {
+				b: "0 3px 0",
+			},
 			fontFamily: {
 				sans: ["Raleway", ...fontFamily.sans],
 				secondary: ["Open Sans", ...fontFamily.sans],

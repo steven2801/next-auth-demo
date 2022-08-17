@@ -4,12 +4,8 @@ import type { NextPage } from "next";
 const Home: NextPage = () => {
 	return (
 		<main>
-			<CustomLink href="/demo" side="right">
-				Demo
-			</CustomLink>
-			<CustomLink href="/design" side="right">
-				Components
-			</CustomLink>
+			<h1 className="mb-4">Demo</h1>
+			<CustomLink href="/">Return Home</CustomLink>
 		</main>
 	);
 };

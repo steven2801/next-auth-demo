@@ -1,11 +1,12 @@
+import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Skeleton from "@/components/Skeleton";
 import type { NextPage } from "next";
 import * as React from "react";
-
-const Title = ({ children }: { children: React.ReactNode }) => {
-	return <h2 className="mb-2 stroke text-bg">{children}</h2>;
-};
+import Title from "@/components/Title";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import CustomLink from "@/components/CustomLink";
 
 const FontSizes = () => {
 	return (
@@ -42,37 +43,83 @@ const Skeletons = () => {
 	);
 };
 
-const Design: NextPage = () => {
+const LeftPanel = () => {
 	return (
-		<div>
-			<h1 className="mb-8">Design</h1>
-			<div className="flex flex-col sm:flex-row gap-4 sm:gap-24">
-				<div>
-					<Title>Font Sizes</Title>
-					<div className="flex flex-col-reverse gap-2">
-						<FontSizes />
-					</div>
-				</div>
-				<div className="flex flex-col gap-2">
-					<div>
-						<Title>Colors</Title>
-						<div className="flex gap-2">
-							<Colors />
-						</div>
-					</div>
-					<div>
-						<Title>Input</Title>
-						<div className="flex flex-col gap-2">
-							<Input label="With label" id="input" placeholder="Input with label" />
-							<Input id="input" placeholder="Input without label" />
-						</div>
-					</div>
+		<>
+			<div id="font-sizes">
+				<Title>Font Sizes</Title>
+				<div className="flex flex-col-reverse gap-2">
+					<FontSizes />
 				</div>
 			</div>
 			<br />
-			<Title>Skeleton</Title>
-			<div className="flex gap-2 flex-col">
-				<Skeletons />
+			<div id="colors">
+				<Title>Colors</Title>
+				<div className="flex gap-2">
+					<Colors />
+				</div>
+			</div>
+			<br />
+			<div id="inputs" className="max-w-xs">
+				<Title>Inputs</Title>
+				<div className="flex flex-col gap-2">
+					<Input label="With label" id="input" placeholder="Input with label" />
+					<Input id="input" placeholder="Input without label" />
+				</div>
+			</div>
+			<br />
+			<div id="buttons">
+				<Title>Buttons</Title>
+				<div className="flex flex-col gap-4 items-start">
+					<Button size="sm">Click Me</Button>
+					<Button>Click Me</Button>
+					<Button size="lg">Click Me</Button>
+				</div>
+			</div>
+			<br />
+			<div id="skeletons">
+				<Title>Skeletons</Title>
+				<div className="flex gap-2 flex-col">
+					<Skeletons />
+				</div>
+			</div>
+		</>
+	);
+};
+
+const ids = ["font-sizes", "colors", "inputs", "buttons", "skeletons"];
+
+const Design: NextPage = () => {
+	const { asPath } = useRouter();
+
+	const currentId = asPath.split("#")[1] ?? "font-sizes";
+	return (
+		<div>
+			<h1 className="mb-8">Design</h1>
+			<CustomLink href="/">Return Home</CustomLink>
+			<div className="flex justify-between">
+				<div>
+					<LeftPanel />
+				</div>
+				<div className="sticky top-12 self-start bg-primary/50 border-2 border-primary/80 rounded-md py-4 pl-8 pr-16 hidden sm:block">
+					<div className="flex flex-col gap-2">
+						{ids.map((id) => (
+							<ul key={id}>
+								<li>
+									<Link href={`#${id}`}>
+										<a
+											className={`hover:text-primary text-bg transition-colors duration-300 font-semibold text-lg ${
+												currentId === id && "text-primary"
+											}`}
+										>
+											# {id}
+										</a>
+									</Link>
+								</li>
+							</ul>
+						))}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
