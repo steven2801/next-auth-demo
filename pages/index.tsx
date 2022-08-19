@@ -7,9 +7,11 @@ const Home: NextPage = () => {
 			<CustomLink href="/demo" side="right">
 				Demo
 			</CustomLink>
-			<CustomLink href="/design" side="right">
-				Components
-			</CustomLink>
+			{process.env.NODE_ENV === "development" && (
+				<CustomLink href="/design" side="right">
+					Components
+				</CustomLink>
+			)}
 		</main>
 	);
 };
