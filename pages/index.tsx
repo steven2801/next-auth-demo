@@ -12,6 +12,15 @@ const Home: NextPage = () => {
 					Components
 				</CustomLink>
 			)}
+			<CustomLink
+				href="https://github.com/steven2801/next-auth-demo"
+				target="_blank"
+				rel="noreferrer noopener"
+				side="right"
+				className="text-indigo-300 to-indigo-300 from-indigo-100"
+			>
+				Repository
+			</CustomLink>
 		</main>
 	);
 };
