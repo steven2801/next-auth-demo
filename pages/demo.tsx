@@ -13,7 +13,14 @@ const Home: NextPage = () => {
 		<main>
 			<h1 className="mb-4">Demo</h1>
 			<CustomLink href="/">Return Home</CustomLink>
+			<CustomLink href="/protected-client" side="right" className="text-yellow-300 to-yellow-300 from-yellow-100">
+				Enter protected route (client-side)
+			</CustomLink>
+			<CustomLink href="/protected-server" side="right" className="text-green-300 to-green-300 from-green-100">
+				Enter protected route (server-side)
+			</CustomLink>
 			<div className="mb-4">
+				<p className="mb-2 font-bold">Current User:</p>
 				{isLoading ? (
 					<Skeleton size="sm" />
 				) : (

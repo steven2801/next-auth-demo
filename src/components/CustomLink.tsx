@@ -54,19 +54,25 @@ export default function CustomLink({
 	href,
 	side = "left",
 	children,
+	className,
 }: {
 	href: string;
 	side?: "left" | "right";
 	children: React.ReactNode;
+	className?: string;
 }) {
 	return (
 		<div className="mb-4 relative w-fit overflow-hidden pb-1 group">
 			<Link href={href}>
-				<a className="transition-opacity duration-300 hover:opacity-80 flex items-center gap-1">
+				<a className={`transition-opacity duration-300 hover:opacity-80 flex items-center gap-1 ${className}`}>
 					{side === "left" && <ArrowLeft />} {children} {side === "right" && <ArrowRight />}
 				</a>
 			</Link>
-			<div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r to-primary from-primary/50 -translate-x-full group-hover:translate-x-0 transition-all duration-300"></div>
+			<div
+				className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r  -translate-x-full group-hover:translate-x-0 transition-all duration-300 ${
+					className ?? "to-primary from-primary/50"
+				}`}
+			></div>
 		</div>
 	);
 }

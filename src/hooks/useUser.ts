@@ -1,5 +1,5 @@
 import { Session } from "next-auth";
-import { getSession, signOut } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
 import useSWR, { useSWRConfig, MutatorOptions } from "swr";
 
 export const getUser = async () => {
@@ -9,7 +9,14 @@ export const getUser = async () => {
 
 const useUser = () => {
 	const { mutate } = useSWRConfig();
-	const { data, isValidating, error } = useSWR("getUser", getUser);
+	const { data } = useSession();
+	const {
+		data: user,
+		isValidating,
+		error,
+	} = useSWR("getUser", getUser, {
+		fallbackData: data,
+	});
 
 	const logout = () => {
 		const options: MutatorOptions<Session> = {
@@ -21,7 +28,7 @@ const useUser = () => {
 		mutate("getUser", signOut({ redirect: false }), options);
 	};
 
-	return { user: data, isLoading: isValidating, error, logout };
+	return { user, isLoading: isValidating, error, logout };
 };
 
 export default useUser;
